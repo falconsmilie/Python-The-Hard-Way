@@ -9,11 +9,12 @@ lexicon = Lexicon()
 parser = Parser()
 
 test_list = {
-    'direction': [lexicon.scan('south')],
-    'noun': [lexicon.scan('door')]
+    'direction': lexicon.scan('south'),
+    'noun': lexicon.scan('door'),
+    'error': lexicon.scan('blah'),
+    'verb': lexicon.scan('eat'),
 }
 
 def test_peek():
     for test_type, word_type_pair in test_list.items():
-        expected = (test_type, word_type_pair[0][0][1])
-        assert_equal(parser.peek(word_type_pair), expected)
+        assert_equal(parser.peek(word_type_pair), test_type)
