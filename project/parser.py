@@ -1,5 +1,5 @@
 
-from ex48.sentence import *
+from project.sentence import *
 
 class ParserError(Exception):
     pass

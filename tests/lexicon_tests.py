@@ -1,5 +1,5 @@
 from nose.tools import *
-from ex48.lexicon import *
+from project.lexicon import *
 
 # Lexicon Tests #
 

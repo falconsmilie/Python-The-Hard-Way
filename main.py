@@ -1,5 +1,5 @@
-from ex48.parser import *
-from ex48.lexicon import *
+from project.parser import *
+from project.lexicon import *
 
 parser = Parser()
 lexicon = Lexicon()

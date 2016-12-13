@@ -1,7 +1,7 @@
 from nose.tools import *
-from ex48.lexicon import *
-from ex48.parser import *
-from ex48.sentence import *
+from project.lexicon import *
+from project.parser import *
+from project.sentence import *
 from copy import deepcopy
 
 # Parser Tests #
