@@ -48,3 +48,32 @@ def test_skip():
     for test_type, word_type_pair in test_list_copy.items():
         parser.skip(word_type_pair, 'stop')
         assert_equal(word_type_pair, expected_list[test_type])
+
+def test_parse_verb():
+    test_list_verb = [
+        lexicon.scan('in the eat'),
+        lexicon.scan('go to the princess'),
+        lexicon.scan('to the kill'),
+        lexicon.scan('stop'),
+    ]
+
+    expected_list = [
+        lexicon.scan('eat'),
+        lexicon.scan('go'),
+        lexicon.scan('kill'),
+        lexicon.scan('stop'),
+    ]
+
+    for i in range(len(test_list_verb)):
+        assert_equal(parser.parse_verb(test_list_verb[i]), expected_list[i][0])
+
+    fail_list = [
+        lexicon.scan('north'),
+        lexicon.scan('forget the princess'),
+        lexicon.scan('murder the bear'),
+        lexicon.scan('find the gold'),
+    ]
+
+    for i in range(len(fail_list)):
+        assert_raises(ParserError, parser.parse_verb, fail_list[i])
+
