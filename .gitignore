@@ -1,6 +1,10 @@
 # Python Compiled files
 *.pyc
 
+# Sublime Project Settings
+*.sublime-project
+*.sublime-workspace
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
