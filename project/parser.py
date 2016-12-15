@@ -2,7 +2,12 @@
 from project.sentence import *
 
 class ParserError(Exception):
-    pass
+    
+    def __init__(self, value):
+        self.value = value
+
+    def __str__(self):
+        return repr(self.value)
 
 
 class Parser(object):
@@ -10,11 +15,17 @@ class Parser(object):
     def parse_sentence(self, word_list):
         """ Finds subject, verb and object in list and returns Sentence. """
 
-        subj = self.parse_subject(word_list)
-        verb = self.parse_verb(word_list)
-        obj = self.parse_object(word_list)
+        try:
+            subj = self.parse_subject(word_list)
+            verb = self.parse_verb(word_list)
+            obj = self.parse_object(word_list)
 
-        return Sentence(subj, verb, obj)
+            return Sentence(subj, verb, obj)
+
+        except ParserError as e:
+            print e.value
+
+        return None
 
 
     def parse_verb(self, word_list):
