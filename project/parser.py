@@ -2,7 +2,8 @@
 from project.sentence import *
 
 class ParserError(Exception):
-    
+    """ Returns ParserError """
+
     def __init__(self, value):
         self.value = value
 
@@ -77,6 +78,19 @@ class Parser(object):
         else:
             raise ParserError('Expected a verb. Got a %s.' % next_word)
 
+    def parse_number(self, word_list):
+        """ Check for a number """
+
+        self.skip(word_list, 'stop')
+
+        next_word = self.peek(word_list)
+
+        if next_word == 'number':
+            return self.match(word_list, 'number')
+
+        else:
+            raise ParserError('Expected a number. Got a %s' % next_word)
+            
 
     def peek(self, word_list):
         """ Allows us to 'peek' at what the next word in the list is. """
