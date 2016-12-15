@@ -77,3 +77,24 @@ def test_parse_verb():
     for i in range(len(fail_list)):
         assert_raises(ParserError, parser.parse_verb, fail_list[i])
 
+def test_parse_number():
+    test_list_number = [
+        lexicon.scan('123'),
+        lexicon.scan('the 456'),
+    ]
+
+    expected_list = [
+        lexicon.scan('123'), 
+        lexicon.scan('456'),
+    ]
+
+    for i in range(len(test_list_number)):
+        assert_equal(parser.parse_number(test_list_number[i]), expected_list[i][0])
+
+    fail_list_number = [
+        lexicon.scan('not a number'),
+        lexicon.scan('kill the 123'),
+    ]
+
+    for i in range(len(fail_list_number)):
+        assert_raises(ParserError, parser.parse_number, fail_list_number[i])
